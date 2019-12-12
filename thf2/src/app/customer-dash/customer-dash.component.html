@@ -1,0 +1,50 @@
+<po-page-default
+  [p-breadcrumb]="breadcrumb"
+  [p-title]="literals?.customerDash">
+
+  <po-select
+    class="po-md-4 po-lg-4"
+    name="selectCustomer"
+    [p-label]="literals?.customer"
+    [(ngModel)]="codeCustomerSelected"
+    [p-options]="optionsCustomer"
+    (p-change)="changeCustomer()">
+  </po-select>
+  
+  <po-divider class="po-md-12">
+  </po-divider>
+
+  <po-widget
+    class="po-lg-4 po-md-4"
+    p-height="190"
+    [p-title]="literals?.customerInfo"
+    (p-primary-action)="openDetails()"
+    [p-primary-label]="literals?.detail">
+    <po-info
+      [p-label]="literals?.name"
+      [p-orientation]="orientation"
+      [p-value]="customer?.name" >
+    </po-info>
+    <po-info
+      [p-label]="literals?.country"
+      [p-orientation]="orientation"
+      [p-value]="customer?.country" >
+    </po-info>
+  </po-widget>
+
+  <po-widget
+    class="po-lg-8 po-md-8"
+    [p-title]="literals?.customerOrders">
+
+    <po-table
+      p-checkbox="false" 
+      p-striped="true"        
+      [p-columns]="columns"   
+      [p-items]="orders"
+      [p-show-more-disabled]="!hasNext"
+      (p-show-more)="search(true)"
+      >
+    </po-table>
+    
+  </po-widget>
+</po-page-default>
